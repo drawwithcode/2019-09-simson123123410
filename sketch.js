@@ -7,7 +7,7 @@ let accChangeY = 0;
 let accChangeT = 0;
 
 function setup() {
-  createCanvas(displayWidth, displayHeight);
+  createCanvas(windowWidth, windowHeight);
 
   for (let i = 0; i < 20; i++) {
     balls.push(new Ball());
