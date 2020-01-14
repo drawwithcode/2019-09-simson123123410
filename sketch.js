@@ -120,18 +120,17 @@ let value = 0;
 
 function draw() {
   fill(value);
-  rect(250, 250, 500, 500);
+  rect(windowWidth/2, windowHeight/2, 500, 500);
   rectMode(CENTER);
+
   textFont('Helvetica');
-
-
-   textAlign(CENTER);
-   text('Try to shake the device to switch color', width/2, height/5*4);
+  textAlign(CENTER);
+  text('Try to shake the device to switch color', width/2, height/5*4);
 
 }
 function deviceShaken() {
   value = value + 5;
-  if (value > 155) {
+  if (value > 255) {
     value = 0;
   }
 }
