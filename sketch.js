@@ -15,9 +15,11 @@ var leftBound;
 var rightBound;
 
 //--------------------------------------------------------------------
-
+ function setup() {
 createCanvas(windowWidth, windowHeight);
   background(200,55,133);
+}
+
 
 function draw() {
 
