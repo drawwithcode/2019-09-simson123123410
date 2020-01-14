@@ -63,6 +63,7 @@ function draw() {
   } else if (yTransition <= topBound) {
     yTransition = topBound;
   }
+}
 
   //--------------------------------------
 
