@@ -117,16 +117,9 @@
 // }
 
 let value = 0;
-
 function draw() {
   fill(value);
-  rect(windowWidth/2, windowHeight/2, 500, 500);
-  // rectMode(CENTER);
-
-  textFont('Helvetica');
-  textAlign(CENTER);
-  text('Try to shake the device to switch color', width/2, height/5*4);
-
+  rect(25, 25, 50, 50);
 }
 function deviceShaken() {
   value = value + 5;
