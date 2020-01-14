@@ -20,6 +20,10 @@ function draw() {
   for (let i = 0; i < balls.length; i++) {
     balls[i].move();
     balls[i].display();
+
+    textFont('Helvetica');
+     textAlign(CENTER);
+     text('Shaking the device to accelerate the balls', width/2, height/5*4);
   }
 
   checkForShake();
