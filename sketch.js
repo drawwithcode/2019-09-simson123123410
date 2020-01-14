@@ -111,17 +111,17 @@
 //
 // }
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  background(200,55,133);
-}
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+//   // background(200,55,133);
+// }
 
 let value = 0;
 
 function draw() {
   fill(value);
   rect(windowWidth/2, windowHeight/2, 500, 500);
-  rectMode(CENTER);
+  // rectMode(CENTER);
 
   textFont('Helvetica');
   textAlign(CENTER);
