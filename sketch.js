@@ -1,98 +1,109 @@
-var ball;
-var xIncrease;
-var yIncrease;
 
-var xTransition = 0;
-var yTransition = 0;
+let balls = [];
 
-var xPosition;
-var yPosition;
+let threshold = 30;
+let accChangeX = 0;
+let accChangeY = 0;
+let accChangeT = 0;
 
-var ballSize = 40;
+function setup() {
+  createCanvas(displayWidth, displayHeight);
 
-var topBound;
-var bottomBound;
-var leftBound;
-var rightBound;
-
-//--------------------------------------------------------------------
- function setup() {
-   //create background
-
-createCanvas(windowWidth, windowHeight);
-  background(200,55,133);
+  for (let i = 0; i < 20; i++) {
+    balls.push(new Ball());
+  }
 }
-
 
 function draw() {
+  background(135,255,220);
 
-ellipse(x,y,w,[h])
-
-
-
-  //define boundaries for the ball
-  topBound = -height / 2 + ballSize / 2;
-  bottomBound = height / 2 - ballSize / 2;
-  leftBound = -width / 2 + ballSize / 2;
-  rightBound = width / 2 - ballSize / 2;
-
-  //--------------------------------------
-
-  //define the ball movement based on the device rotation
-  var xIncrease = map(rotationY, -180, 180, -40, 40);
-  var yIncrease = map(rotationX, -180, 180, -30, 30);
-
-  xTransition += xIncrease;
-  yTransition += yIncrease;
-
-  //--------------------------------------
-  //define behaviour when hitting boundaries
-
-  if (xTransition < rightBound && xTransition > leftBound) {
-    xPosition = xTransition;
-  } else if (xTransition >= rightBound) {
-    xTransition = rightBound;
-  } else if (xTransition <= leftBound) {
-    xTransition = leftBound;
+  for (let i = 0; i < balls.length; i++) {
+    balls[i].move();
+    balls[i].display();
   }
 
-  //--------------------------------------
+  checkForShake();
+}
 
-  //define behaviour when hitting boundaries
-  if (yTransition < bottomBound && yTransition > topBound) {
-    yPosition = yTransition;
-  } else if (yTransition >= bottomBound) {
-    yTransition = bottomBound;
-  } else if (yTransition <= topBound) {
-    yTransition = topBound;
+function checkForShake() {
+  // Calculate total change in accelerationX and accelerationY
+  accChangeX = abs(accelerationX - pAccelerationX);
+  accChangeY = abs(accelerationY - pAccelerationY);
+  accChangeT = accChangeX + accChangeY;
+  // If shake
+  if (accChangeT >= threshold) {
+    for (let i = 0; i < balls.length; i++) {
+      balls[i].shake();
+      balls[i].turn();
+    }
+  }
+  // If not shake
+  else {
+    for (let i = 0; i < balls.length; i++) {
+      balls[i].stopShake();
+      balls[i].turn();
+      balls[i].move();
+    }
   }
 }
 
-  //--------------------------------------
+// Ball class
+class Ball {
+  constructor() {
+    this.x = random(width);
+    this.y = random(height);
+    this.diameter = random(10, 30);
+    this.xspeed = random(-2, 2);
+    this.yspeed = random(-2, 2);
+    this.oxspeed = this.xspeed;
+    this.oyspeed = this.yspeed;
+    this.direction = 0.7;
+  }
 
+  move() {
+    this.x += this.xspeed * this.direction;
+    this.y += this.yspeed * this.direction;
+  }
 
+  // Bounce when touch the edge of the canvas
+  turn() {
+    if (this.x < 0) {
+      this.x = 0;
+      this.direction = -this.direction;
+    } else if (this.y < 0) {
+      this.y = 0;
+      this.direction = -this.direction;
+    } else if (this.x > width - 20) {
+      this.x = width - 20;
+      this.direction = -this.direction;
+    } else if (this.y > height - 20) {
+      this.y = height - 20;
+      this.direction = -this.direction;
+    }
+  }
 
-// function setup() {
-//   createCanvas(windowWidth, windowHeight);
-//   background(200,55,133);
-// }
-//
+  // Add to xspeed and yspeed based on
+  // the change in accelerationX value
+  shake() {
+    this.xspeed += random(5, accChangeX / 3);
+    this.yspeed += random(5, accChangeX / 3);
+  }
 
-// function deviceShaken() {
-//   value = value + 5;
-//   if (value > 255) {
-//     value = 0;
-//   }
-// }
+  // Gradually slows down
+  stopShake() {
+    if (this.xspeed > this.oxspeed) {
+      this.xspeed -= 0.6;
+    } else {
+      this.xspeed = this.oxspeed;
+    }
+    if (this.yspeed > this.oyspeed) {
+      this.yspeed -= 0.6;
+    } else {
+      this.yspeed = this.oyspeed;
+    }
+  }
 
-
-// let value = 0;
-// function draw() {
-//   fill(value);
-//   rect(windowWidth/2, windowHeight/2, 50, 50);
-//   textFont('Helvetica');
-//    textAlign(CENTER);
-//    text('Shaking the device to switch the color', width/2, height/5*4);
-//
-//
-// }
+  display() {
+    ellipse(this.x, this.y, this.diameter, this.diameter);
+  }
+}
