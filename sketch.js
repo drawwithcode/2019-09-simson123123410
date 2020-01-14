@@ -17,7 +17,7 @@
 // var leftBound;
 // var rightBound;
 //
-// // var score = 0;
+// var score = 0;
 //
 // function preload() {
 //   marble = loadImage("./assets/marble.png");
@@ -81,7 +81,7 @@
 //
 //   //--------------------------------------
 //
-//   //create ball falling animation
+//   //falling animation
 //
 //   if ((xTransition > -10 && xTransition < 10) && (yTransition > -height / 3 - 10 && yTransition < -height / 3 + 10) && ballSize > 0) {
 //     ballSize--;
@@ -89,28 +89,19 @@
 //     yTransition = -height / 3;
 //   }
 //
-//   //create hole
-//   fill(0)
-//   ellipse(0, -height / 3, 60)
 //
 //   //add marble image
 //   fill('white')
 //   image(marble, xPosition, yPosition, ballSize, ballSize);
 //   pop();
 //
-//   //add a score counter
-//   fill('white');
-//   textAlign(LEFT);
-//     if (width < height) {
-//       textSize(width/20)}
-//       else textSize(height/30);
+//
 //
 //   textFont('Helvetica');
-//   text('Score: '+score, 30, 60);
 //   textAlign(CENTER);
 //   text('Try to tilt the device to keep the ball on the racket', width/2, height/5*4);
 //
-//   //reset ball（When the ball is over the edge of the racket）
+//   //reset ball（ When the ball is over the edge of the racket)
 //   if (ballSize == 1) {
 //     ballSize = 40;
 //     xTransition = 0;
@@ -120,14 +111,21 @@
 //
 // }
 
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(200,55,133);
+}
+
 let value = 0;
+
 function draw() {
   fill(value);
-  rect(25, 25, 50, 50);
+  rect(250, 250, 500, 500);
+  rectMode(CENTER);
 }
 function deviceShaken() {
   value = value + 5;
-  if (value > 255) {
+  if (value > 155) {
     value = 0;
   }
 }
