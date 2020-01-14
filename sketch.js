@@ -13,10 +13,11 @@ function setup() {
     balls.push(new Ball());
   }
 }
-
+let value = 0;
 function draw() {
   background(135,255,220);
-
+  fill(value);
+  rect(windowWidth/2, windowHeight/2, windowWidth, windowHeight);
   for (let i = 0; i < balls.length; i++) {
     balls[i].move();
     balls[i].display();
@@ -24,8 +25,14 @@ function draw() {
     textFont('Helvetica');
      textAlign(CENTER);
      text('Shaking the device to accelerate the balls', width/2, height/5*4);
-  }
 
+  }
+  function deviceShaken() {
+    value = value + 105;
+    if (value > 255) {
+      value = 0;
+    }
+  }
   checkForShake();
 }
 
