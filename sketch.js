@@ -81,35 +81,7 @@
 //
 //   //--------------------------------------
 //
-//   //falling animation
 //
-//   if ((xTransition > -10 && xTransition < 10) && (yTransition > -height / 3 - 10 && yTransition < -height / 3 + 10) && ballSize > 0) {
-//     ballSize--;
-//     xTransition = 0;
-//     yTransition = -height / 3;
-//   }
-//
-//
-//   //add marble image
-//   fill('white')
-//   image(marble, xPosition, yPosition, ballSize, ballSize);
-//   pop();
-//
-//
-//
-//   textFont('Helvetica');
-//   textAlign(CENTER);
-//   text('Try to tilt the device to keep the ball on the racket', width/2, height/5*4);
-//
-//   //reset ball（ When the ball is over the edge of the racket)
-//   if (ballSize == 1) {
-//     ballSize = 40;
-//     xTransition = 0;
-//     yTransition = 0;
-//     score++;
-//   }
-//
-// }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -119,12 +91,12 @@ function setup() {
 let value = 0;
 function draw() {
   fill(value);
-  rect(windowWidth/2, windowHeight/2, 50, 50);
+  rect(windowWidth/2, windowHeight/2, 500, 500);
   textFont('Helvetica');
    textAlign(CENTER);
    text('Shake the device to switch the color', width/2, height/5*4);
 
-  
+
 }
 function deviceShaken() {
   value = value + 5;
