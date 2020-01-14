@@ -119,7 +119,7 @@ function setup() {
 let value = 0;
 function draw() {
   fill(value);
-  rect(25, 25, 50, 50);
+  rect(windowWidth/2, windowHeight/2, 50, 50);
 }
 function deviceShaken() {
   value = value + 5;
