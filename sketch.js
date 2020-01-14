@@ -111,10 +111,10 @@
 //
 // }
 
-// function setup() {
-//   createCanvas(windowWidth, windowHeight);
-//   // background(200,55,133);
-// }
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(200,55,133);
+}
 
 let value = 0;
 function draw() {
