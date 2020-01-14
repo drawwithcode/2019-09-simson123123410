@@ -91,10 +91,10 @@ function setup() {
 let value = 0;
 function draw() {
   fill(value);
-  rect(windowWidth/2, windowHeight/2, 500, 500);
+  rect(windowWidth/2, windowHeight/2, 50, 50);
   textFont('Helvetica');
    textAlign(CENTER);
-   text('Shake the device to switch the color', width/2, height/5*4);
+   text('Shaking the device to switch the color', width/2, height/5*4);
 
 
 }
