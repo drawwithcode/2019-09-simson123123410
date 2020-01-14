@@ -1,3 +1,4 @@
+var ball;
 var xIncrease;
 var yIncrease;
 
@@ -16,6 +17,8 @@ var rightBound;
 
 //--------------------------------------------------------------------
  function setup() {
+   //create background
+
 createCanvas(windowWidth, windowHeight);
   background(200,55,133);
 }
@@ -23,7 +26,7 @@ createCanvas(windowWidth, windowHeight);
 
 function draw() {
 
-  //create background
+ellipse(x,y,w,[h])
 
 
 
